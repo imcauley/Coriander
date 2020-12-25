@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <h1>Prep Meals</h1>
+        <form id="prep_form" action = "/prep_meals" method = "POST">
+            {% for meal in meals %}
+                <input type="checkbox" id="{{ meal.id }}" name="{{ meal.name }}" value="{{ meal.id }}">
+                <label for="{{ meal.id }}"> {{ meal.name }} </label><br>
+            {% endfor %}
+            <br>
+            <input type = "submit" value = "Add Meals to List" /><br>
+        </form>
+    </body>
+</html>

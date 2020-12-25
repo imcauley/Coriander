@@ -1,0 +1,39 @@
+<html>
+    <h1>
+        Add Meal
+    </h1>
+
+    <form id="meal_form" action = "/add_meal" method = "POST">
+        Name<br>
+        <input type = "text" name = "meal_name" /></br>
+        
+        Recipe Link<br>
+        <input type = "text" name = "meal_url" /></br>
+
+        Ingredients <br>
+        <div id="ingredient_list">
+            <input type = "text" name = "ingredient_0" />
+        </div>
+        
+        
+        <br>
+        <br>
+        <br>
+        <input type = "submit" value = "Add Meal" /><br>
+     </form>
+     <button onclick="addIngredient()">Add Ingredient</button>
+
+    
+
+    <script>
+    var ingredient_index = 1;
+    function addIngredient() {
+        var node = document.createElement("input");
+        var br = document.createElement("br");
+        node.setAttribute("name", "ingredient_" + ingredient_index);
+        ingredient_index++;
+        document.getElementById("ingredient_list").appendChild(br);
+        document.getElementById("ingredient_list").appendChild(node);
+    }
+    </script>
+</html>

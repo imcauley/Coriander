@@ -1,0 +1,1 @@
+{"meals": [{"name": "Beef", "url": "test", "id": 0}], "ingredients": [{"name": "a", "meal_id": 0}, {"name": "b", "meal_id": 0}, {"name": "d", "meal_id": 0}]}
