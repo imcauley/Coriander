@@ -31,6 +31,19 @@ class Meal:
         with open(DATABASE_FILE, 'w') as f:
             json.dump(data, f)
 
+def get_ingredients_from_meals(meal_ids):
+    ingredients = get_all_ingredients()
+    ingredients_in_meals = []
+    for ingredient in ingredients:
+        if ingredient['meal_id'] in meal_ids:
+            ingredients_in_meals.append(ingredient)
+
+    return ingredients_in_meals
+
+def get_all_ingredients():
+    with open(DATABASE_FILE) as f:
+        data = json.load(f)
+    return data['ingredients']
 
 def get_all_meals():
     with open(DATABASE_FILE) as f:
