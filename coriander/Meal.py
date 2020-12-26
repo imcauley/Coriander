@@ -18,7 +18,8 @@ class Meal:
                 self.url = value
 
             if re.match(r'ingredient_.*', key):
-                self.ingredients.append(value)
+                if value != '':
+                    self.ingredients.append(value)
 
     def save(self):
         with open(DATABASE_FILE) as f:
@@ -49,16 +50,41 @@ def export_meals(meal_ids):
             if section['project_id'] == meal_project['id']:
                 grocery_section = section
 
+    meals = get_meals(meal_ids)
+    ingredients = get_ingredients_from_meals(meal_ids)
 
-    task1 = api.items.add('Task1', project_id=meal_project['id'])
+    for meal in meals:
+        current_meal_task = api.items.add(
+            meal['name'], 
+            project_id=meal_project['id'],
+            section_id=grocery_section['id']
+            )
+        
+        api.notes.add(current_meal_task['id'], meal['url'])
+        
+        for ingredient in ingredients[meal['id']]:
+            _ = api.items.add(
+                ingredient['name'], 
+                project_id=meal_project['id'],
+                section_id=grocery_section['id'],
+                parent_id=current_meal_task['id']
+                )
+
+
     api.commit()
+
+def get_meals(meal_ids):
+    all_meals = get_all_meals()
+    meals = [m for m in all_meals if m['id'] in meal_ids]
+    return meals
 
 def get_ingredients_from_meals(meal_ids):
     ingredients = get_all_ingredients()
-    ingredients_in_meals = []
+    ingredients_in_meals = {i:[] for i in meal_ids}
+
     for ingredient in ingredients:
         if ingredient['meal_id'] in meal_ids:
-            ingredients_in_meals.append(ingredient)
+            ingredients_in_meals[ingredient['meal_id']].append(ingredient)
 
     return ingredients_in_meals
 

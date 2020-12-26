@@ -25,7 +25,5 @@ def prep_meals():
         return render_template('prep_meals.html', meals=meals)
     if request.method == 'POST':
         meal_ids = [int(a) for a in request.form]
+        Meal.export_meals(meal_ids)
         return render_template('success.html')
-    #     new_meal = Meal(request.form)
-    #     new_meal.save()
-        # print(request.form)
