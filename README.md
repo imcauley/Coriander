@@ -3,5 +3,10 @@
 A local server app for meal planning with Todoist
 
 ## Setup
+1. Install requirements (see below)
+2. Add TODOIST_API to .env
 
-Activate the conda enviroment with `conda activate coriander``
+## Requirements
+- flask
+- todoist-python
+- python-dotenv
