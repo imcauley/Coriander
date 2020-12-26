@@ -4,7 +4,6 @@ from flask import request
 
 from . import Meal
 
-import sqlite3
 app = Flask(__name__)
 
 conn = sqlite3.connect('example.db')

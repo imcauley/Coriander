@@ -1,5 +1,10 @@
 import re
 import json
+import todoist
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 DATABASE_FILE = './coriander/data/database.json'
 
@@ -31,6 +36,23 @@ class Meal:
         with open(DATABASE_FILE, 'w') as f:
             json.dump(data, f)
 
+def export_meals(meal_ids):
+    api = todoist.TodoistAPI(os.getenv('TODOIST_API'))
+    api.sync()
+
+    for project in api.state['projects']:
+        if project['name'] == 'Groceries':
+            meal_project = project
+
+    for section in api.state['sections']:
+        if section['name'] == 'Grocery List':
+            if section['project_id'] == meal_project['id']:
+                grocery_section = section
+
+
+    task1 = api.items.add('Task1', project_id=meal_project['id'])
+    api.commit()
+
 def get_ingredients_from_meals(meal_ids):
     ingredients = get_all_ingredients()
     ingredients_in_meals = []
@@ -49,3 +71,6 @@ def get_all_meals():
     with open(DATABASE_FILE) as f:
         data = json.load(f)
     return data['meals']
+
+if __name__ == "__main__":
+    export_meals([4])
