@@ -1,12 +1,9 @@
 from flask import Flask
-from flask import render_template
-from flask import request
+from flask import render_template, url_for, request
 
 from . import Meal
 
 app = Flask(__name__)
-
-conn = sqlite3.connect('example.db')
 
 @app.route('/')
 def index():
@@ -19,7 +16,7 @@ def add_meal():
     if request.method == 'POST':
         new_meal = Meal.Meal(request.form)
         new_meal.save()
-        # print(request.form)
+        return render_template('success.html')
 
 @app.route('/prep_meals', methods=['GET', 'POST'])
 def prep_meals():
@@ -27,7 +24,8 @@ def prep_meals():
         meals = Meal.get_all_meals()
         return render_template('prep_meals.html', meals=meals)
     if request.method == 'POST':
-        print(request.form)
+        meal_ids = [int(a) for a in request.form]
+        return render_template('success.html')
     #     new_meal = Meal(request.form)
     #     new_meal.save()
         # print(request.form)
