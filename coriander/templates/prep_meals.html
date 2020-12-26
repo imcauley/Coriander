@@ -3,7 +3,7 @@
         <h1>Prep Meals</h1>
         <form id="prep_form" action = "/prep_meals" method = "POST">
             {% for meal in meals %}
-                <input type="checkbox" id="{{ meal.id }}" name="{{ meal.name }}" value="{{ meal.id }}">
+                <input type="checkbox" id="{{ meal.id }}" name="{{ meal.id }}" value="{{ meal.id }}">
                 <label for="{{ meal.id }}"> {{ meal.name }} </label><br>
             {% endfor %}
             <br>
