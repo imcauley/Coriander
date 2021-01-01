@@ -1,13 +1,40 @@
 <html>
+    <head>
+        <title>Meal Planner</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+
     <body>
-        <h1>Prep Meals</h1>
-        <form id="prep_form" action = "/prep_meals" method = "POST">
-            {% for meal in meals %}
-                <input type="checkbox" id="{{ meal.id }}" name="{{ meal.id }}" value="{{ meal.id }}">
-                <label for="{{ meal.id }}"> {{ meal.name }} </label><br>
-            {% endfor %}
-            <br>
-            <input type = "submit" value = "Add Meals to List" /><br>
-        </form>
+        <div class="row"> 
+            <div class="col col-sm-4"> </div>
+            <div class="col col-sm-4"> 
+
+                <div class="row text-center m-3">
+                    <h1>Prep Meals</h1>
+                </div>
+                
+
+                <div class="col xs-12 sm-12 md-12 lg-12 text-left">
+                    <form id="prep_form" action = "/prep_meals" method = "POST">
+                        <div class="row my-2">
+                        {% for meal in meals %}
+                            <input type="checkbox" id="{{ meal.id }}" name="{{ meal.id }}" value="{{ meal.id }}">
+                            <label for="{{ meal.id }}"> {{ meal.name }} </label><br>
+                        {% endfor %}
+                        </div>
+                        <br>
+
+                        <div class="row text-center m-3">
+                            <input class="btn btn-success" type = "submit" value = "Add Meals to List" /><br>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

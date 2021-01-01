@@ -1,5 +1,33 @@
 <html>
-    <h1> Meal Planner </h1>
-    <h2> <a href="{{ url_for('add_meal') }}"> Add Meal </a>  </h2>
-    <h2> <a href="{{ url_for('prep_meals') }}"> Plan Meals </a>  </h2>
+    <head>
+        <title>Meal Planner</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+    
+
+    <body>
+        <div class="row"> 
+            <div class="col md-4"> </div>
+            <div class="col md-4 text-center"> 
+                <h1> Meal Planner </h1>
+
+                <a href="{{ url_for('add_meal') }}">
+                    <class class="row-sm-12 rounded">
+                        <h2>  Add Meal  </h2>
+                    </class>
+                </a> 
+
+                <a href="{{ url_for('prep_meals') }}">
+                    <class class="row-sm-12 rounded bg-dark">
+                        <h2>  Plan Meals   </h2>
+                    </class>
+                </a>
+            </div>
+        </div>
+
+    </body>
 </html>
